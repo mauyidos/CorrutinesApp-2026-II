@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
@@ -18,10 +17,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.mauyidos.corrutinesapp_2026_ii.R
-import com.mauyidos.corrutinesapp_2026_ii.ui.theme.CorrutinesApp2026IITheme
 import com.mauyidos.corrutinesapp_2026_ii.viewmodel.MainViewModel
 
 @Composable
@@ -44,37 +41,71 @@ fun CoroutinesApp(mainVM: MainViewModel, modifier: Modifier = Modifier) {
             Text(text = stringResource(R.string.cambio_de_color))
         }
 
-        Spacer(modifier = modifier.height(30.dp))
+        Spacer(modifier = modifier.height(15.dp))
 
-        Text(text = "${mainVM.countTime} [s]")
-
-        Spacer(modifier = modifier.height(30.dp))
-
-        Text(text = mainVM.resultState)
-
-        Spacer(modifier = modifier.height(30.dp))
-
+        Text(text = "${mainVM.countTimeSequential}/10 [s]")
         Button(
             onClick = {
-                mainVM.fetchData()
-                //mainVM.bloqueoApp()
+                mainVM.counterSequential()
             }
         ) {
-            Text(text = stringResource(R.string.realizar_consulta))
+            Text(text = "Contador secuencial")
+        }
+        Button(
+            onClick = {
+                mainVM.counterSequential()
+                mainVM.counterSequential(null)
+            }
+        ) {
+            Text(text = "Contador secuencial 2N")
+        }
+        Button(
+            onClick = {
+                mainVM.counterSequential()
+                for (i in 1..2)
+                    mainVM.counterSequential(null)
+            }
+        ) {
+            Text(text = "Contador secuencial 3N")
+        }
+        Button(
+            onClick = {
+                mainVM.counterSequential()
+                for (i in 1..3)
+                    mainVM.counterSequential(null)
+            }
+        ) {
+            Text(text = "Contador secuencial 4N")
+        }
+        Button(
+            onClick = {
+                mainVM.counterSequential()
+                for (i in 1..4)
+                    mainVM.counterSequential(null)
+            }
+        ) {
+            Text(text = "Contador secuencial 5N")
         }
 
-        Spacer(modifier = modifier.height(30.dp))
+        Spacer(modifier = modifier.height(15.dp))
 
-        Text(text = "Tiempo desde la última consulta ${mainVM.countTime2} [s]")
+        Text(text = "${mainVM.countTimeConcurrent}/10 [s]")
+        Button(
+            onClick = {
+                mainVM.counterConcurrent(null)
+            }
+        ) {
+            Text(text = "Contador concurrente")
+        }
 
-        Spacer(modifier = modifier.height(30.dp))
+        Spacer(modifier = modifier.height(15.dp))
 
         Button(
             onClick = {
-                mainVM.terminaContadores = true
+                mainVM.reset()
             }
         ) {
-            Text(text = stringResource(R.string.detener_contadores))
+            Text(text = "Reset")
         }
     }
 }
