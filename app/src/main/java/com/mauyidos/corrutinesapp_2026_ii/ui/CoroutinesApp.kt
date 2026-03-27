@@ -19,10 +19,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.mauyidos.corrutinesapp_2026_ii.R
-import com.mauyidos.corrutinesapp_2026_ii.viewmodel.MainViewModel
+import com.mauyidos.corrutinesapp_2026_ii.viewmodel.AccessViewModel
+import com.mauyidos.corrutinesapp_2026_ii.viewmodel.TimeViewModel
 
 @Composable
-fun CoroutinesApp(mainVM: MainViewModel, modifier: Modifier = Modifier) {
+fun CoroutinesApp(timeVM: TimeViewModel, archiveVM: AccessViewModel, modifier: Modifier = Modifier) {
     var changeColor by remember {
         mutableStateOf(false)
     }
@@ -32,6 +33,7 @@ fun CoroutinesApp(mainVM: MainViewModel, modifier: Modifier = Modifier) {
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
+        /*
         Button(
             onClick = {changeColor = !changeColor},
             colors = ButtonDefaults.buttonColors(
@@ -41,71 +43,93 @@ fun CoroutinesApp(mainVM: MainViewModel, modifier: Modifier = Modifier) {
             Text(text = stringResource(R.string.cambio_de_color))
         }
 
-        Spacer(modifier = modifier.height(15.dp))
+        Spacer(modifier = modifier.height(5.dp))
 
-        Text(text = "${mainVM.countTimeSequential}/10 [s]")
+        Text(text = "${timeVM.countTimeSequential}/10 [s]")
         Button(
             onClick = {
-                mainVM.counterSequential()
+                timeVM.counterSequential()
             }
         ) {
             Text(text = "Contador secuencial")
         }
         Button(
             onClick = {
-                mainVM.counterSequential()
-                mainVM.counterSequential(null)
+                timeVM.counterSequential()
+                timeVM.counterSequential(null)
             }
         ) {
             Text(text = "Contador secuencial 2N")
         }
         Button(
             onClick = {
-                mainVM.counterSequential()
+                timeVM.counterSequential()
                 for (i in 1..2)
-                    mainVM.counterSequential(null)
+                    timeVM.counterSequential(null)
             }
         ) {
             Text(text = "Contador secuencial 3N")
         }
         Button(
             onClick = {
-                mainVM.counterSequential()
+                timeVM.counterSequential()
                 for (i in 1..3)
-                    mainVM.counterSequential(null)
+                    timeVM.counterSequential(null)
             }
         ) {
             Text(text = "Contador secuencial 4N")
         }
         Button(
             onClick = {
-                mainVM.counterSequential()
+                timeVM.counterSequential()
                 for (i in 1..4)
-                    mainVM.counterSequential(null)
+                    timeVM.counterSequential(null)
             }
         ) {
             Text(text = "Contador secuencial 5N")
         }
 
-        Spacer(modifier = modifier.height(15.dp))
+        Spacer(modifier = modifier.height(5.dp))
 
-        Text(text = "${mainVM.countTimeConcurrent}/10 [s]")
+        Text(text = "${timeVM.countTimeConcurrent}/10 [s]")
         Button(
             onClick = {
-                mainVM.counterConcurrent(null)
+                timeVM.counterConcurrent(null)
             }
         ) {
             Text(text = "Contador concurrente")
         }
 
-        Spacer(modifier = modifier.height(15.dp))
+        Spacer(modifier = modifier.height(5.dp))
 
         Button(
             onClick = {
-                mainVM.reset()
+                timeVM.reset()
             }
         ) {
             Text(text = "Reset")
         }
+
+        Spacer(modifier = modifier.height(5.dp))
+         */
+
+        Text(
+            text = "Estado del archivo: ${archiveVM.resultState}\n${if (archiveVM.isArchiveOpen) "El archivo ha estado abierto por ${archiveVM.timer.countTimeConcurrent} [s]" else ""}"
+        )
+        Button(
+            onClick = {
+                archiveVM.OpenArchive()
+            }
+        ) {
+            Text(text = "Abrir archivo")
+        }
+        Button(
+            onClick = {
+                archiveVM.CloseArchive()
+            }
+        ) {
+            Text(text = "Cerrar archivo")
+        }
+
     }
 }
