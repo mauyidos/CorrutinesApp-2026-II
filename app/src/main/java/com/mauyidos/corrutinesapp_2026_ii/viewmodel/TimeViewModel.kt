@@ -21,7 +21,7 @@ class TimeViewModel: ViewModel() {
     var reset by mutableStateOf(false)
         public set
 
-    fun counterSequential(initialTime: Int? = 0) {
+    fun CounterSequential(initialTime: Int? = 0) {
         if (initialTime != null) {
             reset = false
             countTimeSequential = initialTime
@@ -32,7 +32,7 @@ class TimeViewModel: ViewModel() {
         }
     }
 
-    fun counterConcurrent(initialTime: Int? = 0, max: Int = 5, timeLapse: Long = 100) {
+    fun CounterConcurrent(initialTime: Int? = 0, max: Int = 5, timeLapse: Long = 100) {
         if (initialTime != null) {
             reset = false
             countTimeSequential = initialTime
@@ -51,7 +51,7 @@ class TimeViewModel: ViewModel() {
         }
     }
 
-    fun reset() {
+    fun Reset() {
         countTimeSequential = 0
         countTimeConcurrent = 0
         reset = true

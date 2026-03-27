@@ -18,10 +18,10 @@ class AccessViewModel: ViewModel() {
         if (!isArchiveOpen) {
             resultState = "Obteniendo datos del archivo"
             isArchiveOpen = true
-            timer.counterConcurrent(max = 10000, timeLapse = 1000)
+            timer.CounterConcurrent(max = 10000, timeLapse = 1000)
         }
         else {
-            resultState = "El archivo ya esta abierto"
+            resultState = "El archivo ya está abierto"
         }
     }
 
@@ -29,10 +29,10 @@ class AccessViewModel: ViewModel() {
         if (isArchiveOpen) {
             resultState = "Cerrando archivo"
             isArchiveOpen = false
-            timer.reset()
+            timer.Reset()
         }
         else {
-            resultState = "El archivo ya esta cerrado"
+            resultState = "El archivo ya está cerrado"
         }
     }
 }
